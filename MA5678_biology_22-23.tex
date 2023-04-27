@@ -1,0 +1,739 @@
+%ma3650.tex
+
+\documentclass[12pt]{article}
+\usepackage[dvips]{graphicx}
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage{pst-all,amssymb,amsthm,amsmath}
+\usepackage{verbatim}
+\usepackage{makeidx}
+
+\makeindex
+
+%\usepackage{times}
+%\theoremstyle{plain}
+
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\p}{\partial}
+
+\newcommand{\vect}[1]{\underline{#1}}
+\newcommand{\diff}[2]{\fracd{\ud#1}{\ud#2}}
+\newcommand{\pd}[2]{\fracd{\partial#1}{\partial#2}}
+\newcommand{\odd}[2]{\fracd{d^2\! #1}{d #2^2}}
+\newcommand{\od}[2]{\fracd{d #1}{d #2}}
+\newcommand{\pdd}[2]{\fracd{\partial^2\! #1}{\partial #2^2}}
+\newcommand{\pdxy}[3]{\fracd{\partial^2\! #1}{\partial #2#3}}
+\newcommand{\fracd}[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\qhbox}[1]{\quad\hbox{#1}\quad}
+\newcommand{\INTA}[1]{\int_0^1 #1\ \hbox{d}x}
+
+\voffset=-15mm \hoffset=-10mm \oddsidemargin=0.3in
+\evensidemargin=0.3in \topmargin=0in \headheight=0.5in
+\headsep=0.2in\textwidth=6.6in \textheight=9.6in
+
+\DeclareMathOperator{\cosec}{cosec}
+\DeclareMathOperator{\sech}{sech}
+
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\Z{\mathbb{Z}}
+
+\def\cF{\mathcal{F}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cO}{\mathcal{O}}
+\def\setP{\mathcal{P}}
+
+\newcommand{\SEQ}[1]{\{#1\}_{n=1}^\infty}
+\newcommand{\SET}[1]{\{#1\}}
+
+\newcommand{\norm}[1]{\| #1 \|}
+\newcommand{\no}[1]{\| #1 \|_\infty}
+
+\def\E{{\rm Exp}}
+
+\def\aaa{\alpha}
+\def\dd{\delta}
+\def\Dd{\Delta}
+\def\eps{\epsilon}
+\newcommand{\g}{\gamma}
+\def\gl{\lambda}
+\def\Om{\Omega}
+\def\unull{\underline{0}}
+\def\ub{\underline{b}}
+\def\ue{\underline{e}}
+\def\uup{\underline{p}}
+\def\uv{\underline{v}}
+\def\ux{\underline{x}}
+\def\uy{\underline{y}}
+\def\uz{\underline{z}}
+\def\barn{\bar{n}}
+
+\def \sign{{\rm sign}}
+\def\tr{{\rm tr}}
+
+\newcommand{\ba}{\begin{array}}
+\newcommand{\ea}{\end{array}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\bean}{\begin{eqnarray*}}
+\newcommand{\eean}{\end{eqnarray*}}
+
+\usepackage[english]{babel}
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\usepackage{amsfonts}
+%\usepackage{simon}
+\usepackage{path}
+\usepackage{stmaryrd}  % for jump bracket etc
+\usepackage{mathrsfs}
+\usepackage{epsf}
+\usepackage{texdraw}       % TeXdraw macros for diagrams...
+%\usepackage{mytexdrw}      % my personal macros and set-up parameters
+\everytexdraw{\drawdim mm \linewd 0.2 \arrowheadtype t:F \arrowheadsize l:2 w:1}
+\def\verythinlines{\linewd 0.004 }
+
+\def\thinlines{\linewd 0.008 }
+\def\normallines{\linewd 0.02 }
+\def\thicklines{\linewd 0.07 }
+
+\usepackage[latin1]{inputenc}
+%\usepackage{pslatex}  % - don't use - it screws up \mathcal !!
+\usepackage{pstricks}
+\usepackage{color}
+%\usepackage{pstcol}
+\usepackage{pst-plot} % needed for birthday graph
+\usepackage{pst-grad}
+\usepackage{pst-text}
+%\usepackage{pst-char}
+\usepackage{pst-node}
+\usepackage{pst-3d}
+%%% \usepackage{pstricks,color,pstcol,pst-grad,pst-node,pst-text,pst-3d}
+%%% \usepackage{amsmath}
+% Definition of new colors
+\newrgbcolor{LemonChiffon}{1. 0.98 0.8}
+\newrgbcolor{LightBlue}{0.68 0.85 0.9}
+\newrgbcolor{darkgreen}{0.0 0.45 0.0}
+\newrgbcolor{brightgreen}{0.0 0.85 0.0}
+\newrgbcolor{verylightgray}{0.9 0.9 0.9}
+\newrgbcolor{gray}{0.4 0.4 0.4}
+\newrgbcolor{Red}{1 0 0}
+\newrgbcolor{Blue}{0 0 1}
+
+\newfont{\Eufm}{eufm10 at 12pt}
+%\newcommand{\CP}[1]{\mbox{\Eufm#1}}
+\newcommand{\card}[1]{\vert #1\vert}
+\newfont{\sEufm}{eufm10 at 9pt}
+%\newcommand{\sCP}[1]{\mbox{\sEufm#1}}
+%\newcommand{\proofend}{$\blacksquare$}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\Poisson}{\text{Po}}
+\newcommand{\Geometric}{\text{Geom}}
+
+%\usepackage{dingbat} % - use \largepencil for a pencil
+%\usepackage{ifsym} % - use \Cube{3} for a die
+\usepackage{epsdice} % - can use \epsdice{3}
+\usepackage{pifont} % - use
+\newcommand{\TickMark}{\ding{51}}
+\newcommand{\CrossMark}{\ding{55}}
+\usepackage{marvosym} % this needs to come at the end --- but why?
+\newcommand{\ProblemLink}{{\red\Lightning}}
+
+\title{Assignment, Biology (MA5678)}
+%\author{Jacques-\'Elie Furter}
+%\DefaultTransition{Replace}
+% \Logo(9.5, 6.5){\includegraphics[width=2cm]{../penrose.eps}}
+%\Logo(-1.0, 6.5)\includegraphics[width=2cm]{penrose.eps}}
+
+%\usepackage{theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{remarks}[theorem]{Remarks}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{exercises}[theorem]{Exercises}
+
+%\newenvironment{proof}{\vspace{0.3cm} \noindent{\bf Proof.}}{$\qB$\vspace{0.3cm}}
+\newenvironment{example}{\vspace{0.3cm} \noindent{\bf Example.}}{\vspace{0.3cm}}
+\newenvironment{examples}{\vspace{0.3cm} \noindent{\bf Examples.}}{\vspace{0.3cm}}
+\newenvironment{note}{\vspace{0.3cm} \noindent{\bf Note.}}{\vspace{0.3cm}}
+\newenvironment{solution}{\vspace{0.3cm} \noindent{\bf Solution.}}{\vspace{0.3cm}}
+\newenvironment{solutions}{\vspace{0.3cm} \noindent{\bf Solutions.}}{\vspace{0.3cm}}
+\newenvironment{answer}{\vspace{0.3cm} \noindent{\bf Answer.}}{\vspace{0.3cm}}
+\newenvironment{answers}{\vspace{0.3cm} \noindent{\bf Answers.}}{\vspace{0.3cm}}
+\newenvironment{hint}{\vspace{0.3cm} \noindent{\bf Hint.}}{\vspace{0.3cm}}
+
+\newcommand{\bi}{\begin{enumerate}}
+\newcommand{\ei}{\end{enumerate}}
+
+\DeclareGraphicsRule{.eps.gz}{eps}{.eps.bb}{`gunzip -c #1}
+
+%\date{23 January 2023}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\vspace{3cm}
+
+The assignment is a substantial piece of work where you shall implement and discuss finite difference numerical schemes
+used in biological models OR option pricing. {\bf\darkgreen You may choose freely which of the two topics you do}.
+Note also, that in each topic there are different, but comparable questions. This is the biological models assignment.
+From your student number it is focused on the {\bf\magenta insect dispersal model}.
+%{\bf\darkgreen Those depends on your student number, you have no choice}.
+The assignment contributes to 100\% of the final mark for MA5678. There will be a viva of about 45 minutes on your final submission
+to assess authorship and clarify certain aspects of your submission. The viva itself will not be marked.
+\vspace{0.2cm}
+
+{\darkgreen\bf The general aim of the assignment is to create MatLab programmes that can be used to simulate
+the growth of reaction diffusion models and use the programmes to answer questions about the behaviour
+of the biological populations (animals, chemicals, patterns etc.)}
+\vspace{0.2cm}
+
+The final submission is due on
+\vspace{0.2cm}
+
+\centerline{\magenta\bf To Be Discussed.}
+\vspace{0.2cm}
+
+Due to other piece of coursework in other blocks, the plan is to meet in Week 24 to assess progress and to determine a reasonable date of submission.
+
+\noindent via up-loading files on Wiseflow, {\bf\darkgreen zipped in one folder} with your student number
+as its 'name', ie 1980745.zip, say. The `main file' in Wiseflow's speak will be the pdf file of the assignment.
+Relevant files include the .tex and .pdf files of your report with all the picture files and Matlab
+codes. There is no maximum length for the submission, but snappy text will be rewarded.
+The report should be typed in \LaTeX\ (support provided in the computer labs)
+and the numerics done in Matlab.
+
+The submission of the {\bf\magenta standard package} (see the marking criteria) will result
+in a maximum of an $A-$ grade ($70\%$). There will be suggestions for {\bf\magenta additional work}
+beyond the standard package that will be rewarded up to a maximum of $30\%$ (if you answer more of the additional work it will be capped at $30\%$).
+
+\newpage
+
+\section{Requirements}
+
+For the full assignment you should present your results in {\bf\magenta THREE sections}:
+\begin{enumerate}\item Section 1 is about getting each of you on speed with the logistic growth model and
+simple stochastic simulation of populations.
+\item Section 2 is concerned with the understanding, control and modify programmes that will be useful
+to model your particular biological situation in the final part.
+\item In Section 3 you shall derive algorithms to solve PDE problems described thereafter
+to write programmes that will
+approximate the PDE models of your particular biological situation.  \end{enumerate}
+
+\subsection{Requirements for Section 1}
+
+The questions you have to answer are the following:
+\begin{enumerate}\item Describe the role of $r$ and $K$ in the deterministic logistic equation in Section 4
+and determine its analytical solution starting at some initial population $X_0$.
+
+You can look in the literature or internet or solve the {\bf\magenta separable ODE} by yourself.
+If you use external sources, reference them properly.
+\item Create a Matlab script that
+\begin{enumerate}\item illustrate on one graph the typical solutions of the deterministic logistic model (\ref{log1}).
+
+\item generates 10 runs of solutions in the stochastic case (\ref{sto-log1}) in Section 5.1 for a range
+of five values of the volatility $\sigma$ and two different time horizon.
+You should adapt one of the Matlab functions given in Section 5.2
+for the simpler stochastic ODE (\ref{eq19}).
+The values of the volatility is of your choice, but take
+a wide span of values that produce different behaviour. The last two digits $Y\!Z$ of your student number
+represent the initial population $X_0=Y\!Z$.
+\item Comment \underline{every} line of your Matlab programme. \end{enumerate}  \end{enumerate}
+
+The graphs can be made with Matlab, or \LaTeX\  or any other means. But, if you import
+a picture/graph, I think it is better if it is in postscript (.eps file). The following commands
+put the file fig.eps into a figure environment (See \LaTeX\  instructions for details
+of the extra commands like [h], height=3cm etc).
+
+\begin{verbatim}\begin{figure}[h]
+\begin{center}
+\epsfig{file=fig.eps,height=3cm}
+\end{center}
+\caption{caption text} \label{fig0b}\end{figure}
+\end{verbatim}
+
+\newpage
+
+\subsection{Requirements for Section 2}
+
+For Section 2 you should {\bf\magenta write TWO programmes} that will solve
+\begin{enumerate}\item a one dimensional time dependent PDE problem,
+\item and a two dimensional diffusion time dependent problem. \end{enumerate}
+More precisely, you should do the following.
+
+\begin{enumerate}\item Implement and answer some questions about the numerical scheme for an advection equation (See Section 6).
+
+Your outputs should be graphical representations of the solutions at different times, different enough so we can see what is happening to the solution.
+\item\begin{enumerate}\item Implement the numerical scheme given in \verb!Heat2D.m! for the two dimensional heat equation
+for two different initial values giving two qualitatively different results.
+\item Modify the programme \verb!Heat2D.m! to accommodate any initial condition of your choice.
+Illustrate your modified programme using three initial conditions of your choice giving three qualitatively
+different results. \end{enumerate}
+\end{enumerate}
+More details are in Sections 6, 7 and 8.
+
+\subsubsection{Results and their Presentation}
+
+In this section you should
+{\magenta\bf present the results you got from using the programmes using tables and graphs}.
+In the standard package and work beyond it, you will be asked for some type of results.
+Do not forget to describe what the tables and pictures represent, as well as highlighting their main features.
+
+There will be a description of the standard package for them, including input and output,
+and suggested work beyond it.
+You will be free to organise your programmes inside the requests of the standard package.
+{\bf\magenta If you use pieces of code written by someone else, you should acknowledge your source
+and explain what that piece of code is doing.} In this section of your write-up,
+you should make clear what are the input
+and output of your programmes (how to use them) and describe the algorithms you use.
+Between the text of the report and the comments in the programmes,
+{\bf\magenta your numerics should be clear and precisely described}.
+
+\newpage
+
+\subsection{Requirements for Section 3}
+
+\subsubsection{Numerical Solutions of a Biological PDE Model}
+
+For Section 3, you are asked to do the following:
+\begin{enumerate}\item Derive finite difference numerical algorithms to solve your given PDE models 
+corresponding to insect dispersal (see Section 8). DO NOT HESITATE TO SEEK ADVICE BEFORE IMPLEMENTING A COMPLICATED CODE.
+\item Implement your algorithms in Matlab. Typically, you may modify the codes
+given to you in the context of Section 2.
+\item Apply your code to the situations described in Section 8.
+
+Again, your outputs should be graphical representations of the solutions at different times.
+\end{enumerate}
+
+You will be free to organise your programmes inside the constraints of the questions.
+{\bf\magenta If you use pieces of code written by someone else, you should acknowledge your source
+and explain what that piece of code is doing.} In this section of your write-up, you should make clear
+what are the input and output of your programmes (how to use them) and describe the algorithms you use.
+{\bf\magenta Your numerics should be clear and precisely described} between the text of the report
+and the comments in the programmes.
+
+\subsubsection{Results and their Presentation}
+
+You should
+{\magenta\bf present the results you got from using the programmes using mainly graphs (sometimes tables)}.
+In the standard package and work beyond it, you will be asked for some type of results.
+Do not forget to describe what the tables and pictures represent, as well as highlighting their main features.
+
+\newpage
+
+\section{Work Additional to the Standard Package}\label{sec3}
+
+There will be additional questions with the marks total capped at $30\%$ to reach the maximum of $100\%$.
+You may attempt as many additional questions as you like but the total will still be capped at $30\%$,
+so you cannot compensate directly short comings in the standard package using the additional work.
+Those additional questions are as follows:
+
+\begin{enumerate}\item (10 marks) For the advection equation, test the stability as a function of $\rho=\dfrac{\dd t}{\dd x}$.
+Write an implicit code and test its stability. Compare both codes. 
+\item (10 marks) Study the stability of the code for the two dimensional heat equation
+as a function of
+$$ \rho=\frac{\dd t}{(\dd x)^2}+\frac{\dd t}{(\dd y)^2}. $$
+\item (10 marks) For the final insect dispersal model (\ref{insect}), modify \verb|Heat2D.m| to solve the problem if the dispersal 
+occurs in two space dimensions $x$ and $y$.
+\item (twice 10 marks, one on Section 2 and/or one on Section 3) {\bf\darkgreen Warning: this question is left deliberately vague.
+It is there so you can exercise your freedom to explore new avenues.
+You will not receive prior feedback on technical details
+or on the topics you choose.} Do additional numerical work in either or both work in Sections 2 or 3
+that is not requested or suggested in the full package (standard package and additional questions).
+Do not forget to document what you are doing.
+
+Marks will be given mainly depending on originality, technical competence (ie. how correct is
+what you are doing?), explanations and exploitation of results. \end{enumerate}
+
+\begin{remark} You may use your own codes as well, but it is an `interesting exercise'
+{\darkgreen\bf to use someone else's code}. Read (to understand) carefully the input structure because
+it does not necessarily fit exactly with your problem. This can then lead to wrong inputs,
+then to error messages that are not easy to decode. This is why we ask you to comment
+the given codes, to help you really look carefully at them. \end{remark}
+
+{\bf\darkgreen You are advised to sketch your algorithm, and seek feedback on it,
+before embarking in complex and time consuming coding that may be faulty to start with}.
+
+\newpage
+
+\section{Marking Scheme and Threshold Criteria}
+
+\subsection{Marking Scheme}
+
+In total, for the standard and additional packages, there will be
+\begin{enumerate}\item {\bf \darkgreen 25 marks for Section 1} (including the new discussions necessary
+for the pricing algorithms of your options),
+\item {\bf\darkgreen 20 marks for the standard package of Section 2}, and
+\item {\bf\darkgreen 25 marks for the standard package of Section 3},
+\item {\bf\darkgreen 30 marks (capped) for additional package questions}, as many as you like, but capped. \end{enumerate}
+
+For each section, there will be $20\%$ of the marks for writing-up and presentation, taking into account
+in equal measure $5\%$:
+\begin{enumerate}\item if the text is precise and to the point,
+\item if the full width of the pages is used and the referencing properly done,
+\item if the mathematics is properly typed and displayed and properly
+imbedded in sentences,
+\item if the Matlab scripts you wrote are properly commented. \end{enumerate}
+
+\subsection{Marking Criteria}
+
+To get at least an A-, the following threshold must be reached.
+
+\begin{enumerate}\item The report is error free in term of the contents of the requirements.
+\item The report is grammatically correct and free of major spelling errors.
+\item The report is concise but every terms and elements are well defined.
+\item The report satisfies the requirement for Mathematics writing (see Section \ref{sec1.3}).
+\item The Matlab programme is error free and produce correct outputs.
+\item The Matlab programme is properly commented.
+\item The layout of the report is controlled by an effective use of \LaTeX. \end{enumerate}
+
+For a pass mark D-, the requirements 1-3 and 6 are achieved and the errors that can be present
+do not invalidate that achievement. Having satisfied one more requirement, and if the errors that
+can be present do not invalidate that achievement, students will get at least a C-.
+Having satisfied two more requirements, and if the errors that can be present do not invalidate
+that achievement, students will get at least a B-.
+
+\subsection{Requirements for Mathematics Writing}\label{sec1.3}
+
+\begin{enumerate}\item Every mathematical term, including single name of variables or functions, should
+be in math mode: like `the function $f$', not `the function f'.
+\item Sentences must be fully punctuated with commas and full stops including mathematical expression.
+The display of mathematics is for the ease of reading, but does not change the request
+for full punctuation.
+\item When mathematics is displayed, it should be centered in the middle of the page. \LaTeX
+does that naturally using the display commands.
+\item Use the full width and length of the page. Do not use only the top and left side of the page.
+\item Make proper references for information you use without proof. The list of references should be
+at the end of the text using the `bibliography' structure. \end{enumerate}
+
+\newpage
+
+\section{Generalities on the Logistic Model}
+
+A population is described in continuous time $t\in[0,\infty)$ by a function $X:[0,\infty)\to\R$.
+The simpler time evolution of the population $X$ is the {\bf\red exponential growth} model
+given by an ODE in $X$:
+\be \dot{X(t)}=r X(t), \label{log0}\ee
+where $r=b-d$ is a constant representing the difference between the {\bf\red birth rate} $b$
+and {\bf\red death rate} $d$ of the population $X$. The {\bf\red general solution} of (\ref{log0}) is
+$$ X(t)=e^{rt}X_0, $$
+where $X_0$ is the population at $t=0$ (now).
+
+A more sophisticated model, based on the {\bf\red logistic equation}, is
+\be\label{log1} \dot{X}(t)=rX(t)\left(1-\frac{X(t)}{K}\right)\!, \ee
+where $r,K$ are constants. This model can be viewed as modifying the constant effective growth rate $r$
+of (\ref{log0}) by a variable value taking into effect an overcrowding effect, namely
+$$ r\left(1-\frac{X(t)}{K}\right)\!. $$
+Even if (\ref{log1}) looks much more complicated, it is actually a separable equation
+(see Year 1 Calculus), that can be solved exactly as required in the assignment.
+
+\section{Simulation of a Stochastic Process}\label{simulation}
+
+A simple typical stochastic process followed by a population $S$ is the following stochastic ODE:
+\be\label{eq19} dS=\mu S\,dt+\sigma S\,dW \ee
+where $S$ is the {\bf\red population}, $\mu=r$ is the {\bf\red intrinsic growth},
+$\sigma$ is the {\bf\red volatility} and $dW$ is a (so called) {\bf\red Wiener process}
+(the stochastic (probabilistic) element of the SDE (\ref{eq19})).
+This is a {\bf\magenta stochastic version} of the exponential model (\ref{log0}) where $\mu=r$.
+The details of $dW$ are not our concern here, but its values are given by
+\be\label{eq-Wiener} dW=\eps\sqrt{dt},\quad \eps\in N(0,1). \ee
+
+A simple simulation of the process (\ref{eq19}) is to use an Euler approximation:
+\be\label{eqEuler} S_k-S_{k-1}=S_{k-1}\left(\mu\Dd t+\sigma\eps(k-1)\sqrt{\Dd t}\right)\!,\;
+1\leq k\leq N, \ee
+where $\Dd t$ is the discrete time-step, $\eps(k-1)\in N(0,1)$ is a random number drawn
+at every time-step from the normal distribution of mean 0 and standard deviation 1
+(`tossing a normal coin' at each time period). The initial value of the population is $S_0$.
+The number $N$ of steps of simulation we use is such that $N\Dd t=T$
+where $T$ is the {\bf\red time horizon} of the run.
+
+\newpage
+
+Re-organising (\ref{eqEuler}), we get
+\be\label{eqEuler2} S_k=S_{k-1}\left(1+\mu\Dd t+\sigma\eps_k\sqrt{\Dd t}\right)\!,\;k\geq 1. \ee
+This iteration can be simply implemented in a programme.
+
+\begin{remark} Actually, the exact solution of (\ref{eq19}) can be {\magenta\bf better simulated} by the following (discrete) stochastic iteration process
+\be\label{eq20} S_k=
+S_{k-1}e^{\Dd t(\mu-\frac{\sigma^2}{2})+\sigma\sqrt{\Dd t}\,\eps(k-1)},\;k\geq 1. \ee
+This last formula (\ref{eq20}) is implemented in the programmes given later
+in Section \ref{matlab_prog}.
+Note that (\ref{eqEuler2}) is an Euler type approximation of (\ref{eq20}). \end{remark}
+
+\subsection{Stochastic Nonlinear Logistic Equation}
+
+For the logistic equation (\ref{log1}), there is an equivalent {\bf\red logistic stochastic ODE}:
+\be\label{sto-log1} dX=rX(t)\left(1-\frac{X(t)}{K}\right)dt+\sigma X(t)\,dW. \ee
+For the assignment you are required to adapt one of the following Matlab programmes for (\ref{eq19})
+to get simulations for (\ref{sto-log1}) using the simpler formula similar to (\ref{eqEuler})
+\be\label{eqEuler3} X_k-X_{k-1}=rX_{k-1}\left(1-\frac{X_{k-1}}{K}\right)\Dd t
++\sigma X_{k-1}\eps(k-1)\sqrt{\Dd t},\;1\leq k\leq N. \ee
+
+\begin{remark} You need to implement (\ref{eqEuler3}) in your programme because the equivalent to formula (\ref{eq20}) is actually rather more complicated in the case of the stochastic nonlinear logistic equation, so we use the simpler approximation induced by (\ref{eqEuler3}). \end{remark}
+
+%\newpage
+
+\subsection{Matlab Functions}\label{matlab_prog}
+
+In this section we give you various functions you can adapt to create the script asked for Part 1
+of the assignment. In the following, $\mu$ is the drift and $\sigma$ the volatility. The initial value
+of the asset is $S_0$. The time horizon is $T$ and the number of time steps are given by NSteps.
+
+\subsubsection{Simple Code for (\ref{eqEuler2})}
+
+In the following piece of code, the number of runs is NRepl. The output is stored in the matrix (array) SPaths.
+
+\begin{verbatim}
+function SPaths=AssetPaths(S0,mu,sigma,T,NSteps,NRepl)
+SPaths = zeros(NRepl, 1+NSteps);
+SPaths(:,1) = S0;
+dt = T/NSteps;
+nudt = (mu-0.5*sigma^2)*dt;
+sidt = sigma*sqrt(dt);
+for i=1:NRepl
+   for j=1:NSteps
+      SPaths(i,j+1)=SPaths(i,j)*exp(nudt + sidt*randn);
+   end
+end
+\end{verbatim}
+
+\subsubsection{Vectorised Version of the Simple Code for (\ref{eqEuler2})}
+
+This is the vectorised version of the previous code. To determine it, we rewrite (\ref{eq20}) as
+\be\label{eq21} \ln(S_k)-\ln(S_{k-1})=(\mu-\frac{\sigma^2}{2})\Dd t
++\sigma\sqrt{\Dd t}\,\eps(k-1),\;k\geq 1, \ee
+
+\begin{verbatim}
+function SPaths=AssetPathsV(S0,mu,sigma,T,NSteps,NRepl)
+dt = T/NSteps;
+nudt = (mu-0.5*sigma^2)*dt;
+sidt = sigma*sqrt(dt);
+Increments = nudt + sidt*randn(NRepl, NSteps);
+LogPaths = cumsum([log(S0)*ones(NRepl,1) , Increments] , 2);
+SPaths = exp(LogPaths);
+Spaths(:,1) = S0;
+\end{verbatim}
+
+\subsubsection{Another Piece of Code for (\ref{eqEuler2})}
+
+This is another Matlab function simulating the values of an asset on $[0,T]$ using a GBM.
+The output is in $Y$.
+
+\begin{verbatim}
+function [Y] = geometric_brownian(NSteps,mu,sigma,T)
+NSteps = input('number of step:');
+T = input('Enter length of interval:');
+mu = input('Enter drift:');
+sigma = input('Enter volatility:');
+
+t = (0:1:NSteps)'/NSteps;
+
+W = [0; cumsum(randn(NSteps,1))]/sqrt(NSteps);
+t = t*T;
+W = W*sqrt(T);
+X = (mu-(sigma^2)/2)*t + sigma * W;
+Y = exp(X);
+plot(t,Y);
+title(['Sample Path of Geometric Brownian motion
+with diffusion cofficient=' num2str(sigma),' Interest rate=' num2str(r) ])
+xlabel(['Time'])
+
+\end{verbatim}
+
+\newpage
+
+\subsubsection{Nonlinear Logistic Equation}
+
+Finally, we give you a simple code for the simple Euler approximation
+for the Nonlinear Logistic equation (\ref{eqEuler3}):
+
+\begin{verbatim}
+x0=10;
+NRepl=1;
+NSteps=90;
+T=100;
+sigma=0.1;
+r=0.05;
+K=20;
+x = zeros(NRepl, 1+NSteps);
+x(:,1) = x0;
+dt = T/NSteps;
+sidt = sigma*sqrt(dt);
+t=linspace(0,T, NSteps+1);
+for i=1:NRepl
+   for j=1:NSteps
+      x(i,j+1)=x(i,j)*(1+r*(1-(x(i,j))/K)*dt + sidt*randn);
+   end
+end
+
+plot(t,x)
+\end{verbatim}
+
+\newpage
+
+\section{Advection (Transport) Equation}
+
+The following programme solves the PDE
+\be \label{transport} \frac{\p u}{\p t}+c\,\frac{\p u}{\p x}=0, \ee
+on the domain $\R\times[0,\infty]$ with initial condition
+\be\label{Tic} u(x,0)=f(x). \ee
+
+\begin{enumerate}\item Check that
+$$ u(x,t)=f(x-ct) $$
+is a solution of (\ref{transport}) satisfying the initial condition (\ref{Tic}).
+
+\item The following programme solves numerically (\ref{transport},\ref{Tic}), using finite differences,
+on a FIXED interval $[x_{\min},x_{\max}]\subset\R$.
+
+\begin{verbatim}
+% transport.m
+function [solution, N, M] = transport(xmin, dx, xmax, dt, tmax, c, f0)
+N = ceil((xmax - xmin) / dx);
+xmax = xmin + N*dx;
+M = ceil(tmax/dt);
+k1 = 1 - dt*c/dx;
+k2 = dt*c/dx;
+solution = zeros(N+1,M+1);
+vetx = xmin:dx:xmax;
+for i=1:N+1
+   solution(i,1) = feval(f0,vetx(i));
+end
+fixedvalue = solution(1,1);
+% this is needed because of finite domain
+for j=1:M
+   solution(:,j+1) = k1*solution(:,j) + k2*[ fixedvalue ; solution(1:N,j) ];
+end
+
+\end{verbatim}
+
+\begin{enumerate}\item Fully comment the file \verb|transport.m|. Explain and derive how it is constructed.  
+\item Modify the script \verb|TransportPlot.m| to plot solutions of (\ref{Tic}) for many times with $f$ of different shapes and smoothness.
+\end{enumerate}
+
+\newpage
+
+The script to run the previous programme for some given time is given as follows.
+
+\begin{verbatim}
+
+% TransportPlot.m
+function TransportPlot(xmin, dx, xmax, times, sol)
+subplot(2,2,1)
+plot(xmin:dx:xmax, sol(:,times(1)))
+axis([xmin xmax -0.1 1.1])
+subplot(2,2,2)
+plot(xmin:dx:xmax, sol(:,times(2)))
+axis([xmin xmax -0.1 1.1])
+subplot(2,2,3)
+plot(xmin:dx:xmax, sol(:,times(3)))
+axis([xmin xmax -0.1 1.1])
+subplot(2,2,4)
+plot(xmin:dx:xmax, sol(:,times(4)))
+axis([xmin xmax -0.1 1.1])
+
+\end{verbatim}
+
+\end{enumerate}
+
+\newpage
+
+\section{Two Dimensional Heat Equation}
+
+This script solves, with an implicit scheme, the heat equation
+\be\label{heat1} \frac{\p u}{\p t}=\frac{\p^2 u}{\p x^2}+\frac{\p^2 u}{\p y^2}, \ee
+on the domain $[0,1]\times[0,1]\times[0,T_{\max}]$
+subject to the initial condition
+$$ u(x,y,0)=u_0(x,y),\quad x,y\in[0,1]. $$
+
+The following programme \verb|Heat2D.m| plots 2-D slices of the solutions $u(x,y,\hat{t})$ for fixed $\hat{t}$. 
+
+To get some understanding of the programme, determine the boundary conditions and run the programme with the following instruction
+$$ \verb!Heat2D(0.0001, 0.05, 0.05, 0.10, [0.02 0.04 0.06 0.08 0.1], 10, [0.2 0.9 0.2 0.9])! $$
+
+Questions to be answered are in Section 1.2.
+
+\newpage
+
+\begin{verbatim}
+function U = Heat2D(dt, dx, dy, Tmax, Tsnap, value, bounds)
+% make sure steps are consistent
+Nx = round(1/dx);
+dx = 1/Nx;
+Ny = round(1/dy);
+dy = 1/Ny;
+Nt = round(Tmax/dt);
+dt = Tmax/Nt;
+rhox = dt/dx^2;
+rhoy = dt/dy^2;
+if  rhox + rhoy > 0.5
+    fprintf(1,'Warning: bad selection of steps\n');
+end
+C1 = 1-2*rhox-2*rhoy;
+Layers = zeros(2, 1+Nx, 1+Ny);
+tpast = 1;
+tnow = 2;
+iTsnap = Tsnap/dt;
+[X, Y] = meshgrid(0:dx:1, 0:dy:1);
+% set up initial conditions and plot
+Layers(tpast, (1+round(bounds(1)/dx)):(1+round(bounds(2)/dx)), ...
+    (1+round(bounds(3)/dy)):(1+round(bounds(4)/dy))) = value;
+U = shiftdim(Layers(tpast,:,:));
+figure;
+surf(X,Y,U);
+title('t=0','Fontsize',12);
+% Carry out iterations
+for t=1:Nt
+    for i=2:Nx
+        for j=2:Ny
+            Layers(tnow,i,j) = C1*Layers(tpast,i,j) + ...
+                rhox*(Layers(tpast,i+1,j) + Layers(tpast,i-1,j)) + ...
+                rhoy*(Layers(tpast,i,j+1) + Layers(tpast,i,j-1));
+        end
+    end
+    % Plot if required
+    if find(iTsnap == t)
+        U = shiftdim(Layers(tnow,:,:));
+        figure;
+        surf(X,Y,U);
+        title(['t=', num2str(Tsnap(1)) ],'Fontsize',12);
+        Tsnap(1) = [];
+    end
+    % Swap layers
+    tnow = 1+mod(t+1,2);
+    tpast = 1+mod(t,2);
+end
+\end{verbatim}
+
+\newpage
+
+\section{Insect Dispersal Model}\label{biol_models}
+
+Let $n(x,t)$ be the density of insects at point $x\in\R$ (one dimensional habitat) and time $t$. The dispersal equation is
+\be\label{insect} n_t=d_0\left((\frac{n}{n_0})^mn_x\right)_x \ee
+where $m$, $d_0$ and $n_0$ are positive constants.
+
+
+\begin{enumerate}\item Determine the density $n(x,t)$ of insects for $t\geq 0$ when a quantity $Q$ is released
+at the origin $x=0$ at time $t=0$. For the numerics, use a finite interval $[-R,R]$.
+Show the evolution of the density of insects as time progresses. 
+\item Add a wind factor $w n_x$ to equation (\ref{insect}), where $w$ is a constant proportional to the speed of the wind.
+Discuss the effect of $w$ on the solutions ($w$ can also be negative). 
+\end{enumerate}
+
+\end{document}
+
+

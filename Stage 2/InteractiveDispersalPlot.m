@@ -1,0 +1,36 @@
+function InteractiveDispersalPlot(xmin, dx, xmax, dt, tmax, solution)
+    % Create a figure
+    fig = figure('Name', 'Interactive Dispersal Model');
+    
+    % Create an axes object to display the plot
+    ax = axes(fig, 'Position', [0.15, 0.25, 0.75, 0.7]);
+    
+    % Create a slider to control the time
+    slider = uicontrol('Style', 'slider', ...
+        'Parent', fig, ...
+        'Units', 'normalized', ...
+        'Position', [0.15, 0.1, 0.75, 0.05], ...
+        'Value', 0, ...
+        'Min', 0, ...
+        'Max', tmax, ...
+        'SliderStep', [dt/tmax, 5*dt/tmax]);
+    
+    % Add a label for the slider
+    uicontrol('Style', 'text', ...
+        'Parent', fig, ...
+        'Units', 'normalized', ...
+        'Position', [0.15, 0.05, 0.75, 0.03], ...
+        'String', 'Time');
+    
+    % Define a function to update the plot
+    function updatePlot(src, ~)
+        time = src.Value;
+        DispersalPlot(xmin, dx, xmax, dt, solution, time);
+    end
+
+    % Initialize the plot
+    DispersalPlot(xmin, dx, xmax, dt, solution, 0);
+    
+    % Add a listener to the slider to update the plot
+    addlistener(slider, 'ContinuousValueChange', @updatePlot);
+end

@@ -1,12 +1,12 @@
 % define the parameters
-xmin = 0;
+xmin = -10;
 dx = 0.1;
 xmax = 10;
 dt = 0.001; % Update dt value to a smaller time step
-tmax = 5;
+tmax = 50;
 d0 = 0.5;
-m = 1.5;
-n0 = 100;
+m = 0.5;
+n0 = 150;
 Q = 100;
 
 % calculate the solution using the dispersal function

@@ -1,4 +1,5 @@
-Numerical Methods
+# Numerical Methods
+
 This contains my assignment for the "Numerical Methods" module offered to third year bachelor and masters degree students (with modified assesment criteria) at Brunel University London. This final write up for this project was in LaTeX and all code was written in Matlab. You can find specific details on what was done in each section below.
 
 ### Completed Sections:
